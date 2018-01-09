@@ -52,11 +52,14 @@ def request_mutex():
                         print('Posted mutex request to ' + str(adventurer['url'] + adventurer_mutex_endpoint))
                         change_config('lamport_clock', get_config()['lamport_clock'] + 1)
                         print(str(response.json()))
-                        if not response.json().get('msg'):
-                            add_to('waiting_answers', adventurer['user'])
-                        else:
-                            if not response.json().get('msg')== 'reply-ok':
+                        if response.status_code == 200 or response.status_code == 201:
+                            if not response.json().get('msg'):
                                 add_to('waiting_answers', adventurer['user'])
+                            else:
+                                if not response.json().get('msg')== 'reply-ok':
+                                    add_to('waiting_answers', adventurer['user'])
+                        else:
+                            add_to('waiting_answers', adventurer['user'])
                     except Exception as e:
                         print('Something is wrong! Just wrong: \n' + str(e))
                 else:

@@ -26,6 +26,8 @@ class HeroysMutex(Resource):
         try:
             if json_data['msg'].lower() == 'reply-ok' and len(json_data) == 4:
                 print('Received mutex reply-ok')
+                print(str(waiting_answers))
+                print(json_data['user'])
                 if json_data['user'] in waiting_answers:
                     waiting_answers.remove(json_data['user'])
                 change_config('waiting_answers', waiting_answers)
