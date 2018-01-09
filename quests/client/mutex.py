@@ -39,7 +39,7 @@ def request_mutex():
         for idx, adventurer in enumerate(adventureres):
             try:
                 if 'mutex' in adventurer['capabilities']:
-                    response = requests.get(make_http(adventurer['url']), timeout=5)
+                    response = requests.get(make_http(adventurer['url']), timeout=2)
                     adventurer_mutex_endpoint = response.json()['mutex']
                     data_json = json.dumps({
                         "msg": "request",
@@ -48,7 +48,7 @@ def request_mutex():
                         "user": config['own_address'] + config['hero_url']
                     })
                     try:
-                        response = requests.post(make_http(adventurer['url'] + adventurer_mutex_endpoint), data=data_json, timeout=5)
+                        response = requests.post(make_http(adventurer['url'] + adventurer_mutex_endpoint), data=data_json, timeout=2)
                         print('Posted mutex request to ' + str(adventurer['url'] + adventurer_mutex_endpoint))
                         change_config('lamport_clock', get_config()['lamport_clock'] + 1)
                         print(str(response.json()))
@@ -70,7 +70,7 @@ def request_mutex():
         trymax = len(get_config()['waiting_answers'])
         while len(get_config()['waiting_answers']) != 0 and tries <= trymax:
             print('Waiting for ' + str(len(get_config()['waiting_answers'])) + ' answers')
-            time.sleep(3)
+            time.sleep(10)
             if tries == trymax and len(get_config()['waiting_answers']) != 0 :
                 print('Did not receive all answers :C. Still entering critial_section')
             tries += 1
