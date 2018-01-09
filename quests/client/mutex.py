@@ -53,11 +53,8 @@ def request_mutex():
                         change_config('lamport_clock', get_config()['lamport_clock'] + 1)
                         print(str(response.json()))
                         if response.status_code == 200 or response.status_code == 201:
-                            if not response.json().get('msg'):
-                                add_to('waiting_answers', adventurer['user'])
-                            else:
-                                if not response.json().get('msg')== 'reply-ok':
-                                    add_to('waiting_answers', adventurer['user'])
+                            if not response.json().get('msg') or not response.json().get('msg')== 'reply-ok':
+                                add_to('waiting_answers', response.json()['user'])
                         else:
                             add_to('waiting_answers', adventurer['user'])
                     except Exception as e:
