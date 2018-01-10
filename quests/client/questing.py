@@ -14,6 +14,7 @@ def solve_quests(quest, quest_no, auth_header):
     quest_host = search_location(auth_header, task)
     int_quest_no = int(quest_no)
     print(str(int_quest_no))
+    print(int_quest_no)
 
     if int_quest_no == 1:
         deliver_token = visit_throneroom(auth_header, quest_host, location_url)
