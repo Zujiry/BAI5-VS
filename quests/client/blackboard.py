@@ -25,6 +25,8 @@ def quest_filter(choice, auth_header):
 def choose_quest(auth_header):
     divide_line()
     result = quest_ui(auth_header)
+    print(str(result))
+    print(result[0])
     if result[0]:
         quest_no, quest = result[0][0], result[0][1]
         if not quest_no:
@@ -98,7 +100,6 @@ def show_all_quests(auth_header):
         if quest_no == 'n':
             return False
     quest = quests[int(quest_no)]
-    print((int(quest_no) + 1))
     return (int(quest_no) + 1), quest
 
 
