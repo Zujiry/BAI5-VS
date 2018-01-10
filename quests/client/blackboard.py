@@ -98,6 +98,7 @@ def show_all_quests(auth_header):
         if quest_no == 'n':
             return False
     quest = quests[int(quest_no)]
+    print((int(quest_no) + 1))
     return (int(quest_no) + 1), quest
 
 
