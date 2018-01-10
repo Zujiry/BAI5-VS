@@ -34,7 +34,7 @@ def election_algorithm(election_data):
     data = json.dumps(election_data)
     response = requests.get(get_config()[util_group] + get_config()['member_url'], headers=get_config()[auth_token])
     coordinator = True
-    pool = ThreadPool(processes=3)
+    pool = ThreadPool(processes=1)
     for member in response.json()['objects']:
         if member['user'] > ('/users/' + get_config()[util_user]):
             print(member['user'])
