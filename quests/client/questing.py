@@ -12,20 +12,18 @@ def solve_quests(quest, quest_no, auth_header):
     # Questing
     location_url, task = lookup_task(auth_header)
     quest_host = search_location(auth_header, task)
-    int_quest_no = int(quest_no)
-    print(str(int_quest_no))
-    print(int_quest_no)
+    #int_quest_no = int(quest_no)
 
-    if int_quest_no == 1:
+    if int_quest_no == '1':
         deliver_token = visit_throneroom(auth_header, quest_host, location_url)
         deliver(auth_header, deliver_token, quest_no, quest['tasks'])
-    elif int_quest_no == 2:
+    elif int_quest_no == '2':
         deliver_token = visit_rats(auth_header, quest_host, location_url)
         deliver(auth_header, deliver_token, quest_no, quest['tasks'])
-    elif int_quest_no == 3 and get_config()[util_group] != '':
+    elif int_quest_no == '3' and get_config()[util_group] != '':
         deliver_token = visit_wounded(auth_header, quest_host, location_url)
         deliver(auth_header, deliver_token, quest_no, quest['tasks'])
-    elif int_quest_no == 4 and get_config()[util_group] != '':
+    elif int_quest_no == '4' and get_config()[util_group] != '':
         print('There should be at least 2 people with a running server in your group and one that can be connected during the quest and is higher in order by name')
         print('String order: A < a, itoo < itoo2')
         deliver_token = visit_elves(auth_header, quest_host, location_url)
@@ -33,7 +31,7 @@ def solve_quests(quest, quest_no, auth_header):
             deliver(auth_header, deliver_token[1], quest_no, quest['tasks'])
         else:
             deliver(auth_header, deliver_token, quest_no, quest['tasks'])
-    elif int_quest_no == 5:
+    elif int_quest_no == '5':
         deliver_token = visit_northern_wilds(auth_header, quest_host, location_url)
     else:
         print('Sorry, you do not have the required requirements to solve this. Back to the Main UI.')
