@@ -52,6 +52,12 @@ def election_algorithm(election_data):
     if coordinator:
         divide_line()
         print('Heroy is president!')
+        for member in response.json()['objects']:
+            try:
+                user = requests.get(make_http(member['url']))
+                requests.put(make_http(member['url']) + user.json()['election'], data=json.dumps({'msg':'I am the almighty president of whateverland: ' + str(get_config()['username'])}))
+            except Exception:
+                print('Oh well, someone does not know')
         if input('Solve the assginment?\n> ') == 'y':
             ok = solve_assignment(election_data['job'], election_data['user'])
             if not ok:

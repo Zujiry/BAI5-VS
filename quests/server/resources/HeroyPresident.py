@@ -22,3 +22,7 @@ class HeroyPresident(Resource):
         thread = Thread(target=election_algorithm, args=(election_data,))
         thread.start()
         return jsonify({"message": "OK"})
+
+    def put(self):
+        json_data = request.get_json(force=True)
+        print(json_data['msg'])
