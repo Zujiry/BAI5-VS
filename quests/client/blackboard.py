@@ -19,7 +19,7 @@ def quest_filter(choice, auth_header):
     }
     if not choice_filter.get(choice):
         logout('')
-    return choice_filter.get(choice)(auth_header), ''
+    return choice_filter.get(choice)(auth_header)
 
 
 def choose_quest(auth_header):
