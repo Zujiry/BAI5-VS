@@ -56,7 +56,8 @@ def election_algorithm(election_data):
             ok = solve_assignment(election_data['job'], election_data['user'])
             if not ok:
                 print('Could not finish our assignment!')
-            print('Finished assignment successfully')
+            else:
+                print('Finished assignment successfully')
         else:
             election_algorithm(election_data)
     else:
@@ -95,7 +96,7 @@ def solve_assignment(json_data, sender_uri):
 
     print('Response of method:')
     print(response.json()['message'])
-    print(response.status_code)
+    print(str(response.status_code))
     print()
     if response.status_code == 200:
         print(response.json()['message'])
