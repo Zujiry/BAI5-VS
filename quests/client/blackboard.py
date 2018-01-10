@@ -28,7 +28,7 @@ def choose_quest(auth_header):
     print(str(result))
     print(result[0])
     if result[0]:
-        quest_no, quest = result[0][0], result[0][1]
+        quest_no, quest = result[0], result[1]
         if not quest_no:
             return
     else:
