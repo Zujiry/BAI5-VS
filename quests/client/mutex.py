@@ -48,7 +48,7 @@ def request_mutex():
                         "user": config['own_address'] + config['hero_url']
                     })
                     try:
-                        response = requests.post(make_http(adventurer['url'] + adventurer_mutex_endpoint), data=data_json, timeout=2)
+                        response = requests.post(make_http(adventurer_mutex_endpoint), data=data_json, timeout=2)
                         print('Posted mutex request to ' + str(adventurer['url'] + adventurer_mutex_endpoint))
                         change_config('lamport_clock', get_config()['lamport_clock'] + 1)
                         print(str(response.json()))
