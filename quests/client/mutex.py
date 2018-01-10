@@ -49,7 +49,7 @@ def request_mutex():
                     })
                     try:
                         response = requests.post(make_http(adventurer_mutex_endpoint), data=data_json, timeout=2)
-                        print('Posted mutex request to ' + str(adventurer['url'] + adventurer_mutex_endpoint))
+                        print('Posted mutex request to ' + str(adventurer_mutex_endpoint))
                         change_config('lamport_clock', get_config()['lamport_clock'] + 1)
                         print(str(response.json()))
                         if response.status_code == 200 or response.status_code == 201:

@@ -56,6 +56,7 @@ def election_algorithm(election_data):
             ok = solve_assignment(election_data['job'], election_data['user'])
             if not ok:
                 print('Could not finish our assignment!')
+            print('Finished assignment successfully')
         else:
             election_algorithm(election_data)
     else:
